@@ -1,6 +1,10 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
   <Project Path="Day01/Day01.csproj" />
   <Project Path="Day02/Day02.csproj" Id="d6b54185-0426-4b84-bc01-bf197817a064" />
   <Project Path="Day03/Day03.csproj" Id="66e6d90f-b099-44a7-a19d-a67b2401109d" />
   <Project Path="Day04/Day04.csproj" Id="dff1a969-5a1c-4773-a04d-cb1fa01bbcdc" />
+  <Project Path="Day05/Day05.csproj" Id="e138847b-85b9-4a85-9db7-d140e4002e7f" />
 </Solution>

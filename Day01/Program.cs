@@ -25,7 +25,7 @@ string inputFilename = useExampleInput
             }
             acc.Position = newPosition;
             acc.ZeroCount += acc.Position == 0 ? 1 : 0;
-                
+
             return acc;
         });
 

@@ -10,20 +10,20 @@ List<char[]> batteryBanks = File
     .ToList();
 List<long> results = new[] { 2, 12 }
     .Select(numberOfSwitchesPerBank =>
-	    batteryBanks
-	        .Sum(bank => Enumerable
-		        .Range(0, numberOfSwitchesPerBank)
-		        .Reverse()
-		        .Aggregate(
-			        (PreviousIndex: -1, Total: 0L),
-			        (acc, curr) =>
-			        {
-				        var (remainingMax, index) = bank[(acc.PreviousIndex + 1)..^curr]
-							.Select((character, index) => (Value: character - '0', Index: index))
-							.MaxBy(item => item.Value);
-				        return (acc.PreviousIndex + 1 + index, acc.Total * 10 + remainingMax);
-			        })
-				.Total))
+        batteryBanks
+            .Sum(bank => Enumerable
+                .Range(0, numberOfSwitchesPerBank)
+                .Reverse()
+                .Aggregate(
+                    (PreviousIndex: -1, Total: 0L),
+                    (acc, curr) =>
+                    {
+                        var (remainingMax, index) = bank[(acc.PreviousIndex + 1)..^curr]
+                            .Select((character, index) => (Value: character - '0', Index: index))
+                            .MaxBy(item => item.Value);
+                        return (acc.PreviousIndex + 1 + index, acc.Total * 10 + remainingMax);
+                    })
+                .Total))
     .ToList();
 
 Console.WriteLine("Day 3A");
