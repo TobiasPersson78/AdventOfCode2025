@@ -31,6 +31,5 @@ string inputFilename = useExampleInput
 
 Console.WriteLine("Day 1A");
 Console.WriteLine($"Password: {result.ZeroCount}"); // 3, 1074
-
 Console.WriteLine("Day 1B");
 Console.WriteLine($"Password: {result.ZeroPasses}"); // 6, 6254

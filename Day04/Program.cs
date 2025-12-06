@@ -40,7 +40,6 @@ while (rollsRemovedCount.Last() > 0);
 
 Console.WriteLine("Day 4A");
 Console.WriteLine($"Rolls of paper immediately accessible by forklift: {rollsRemovedCount.First()}"); // 13, 1489
-
 Console.WriteLine("Day 4B");
 Console.WriteLine($"Rolls of paper accessible by forklift after removals: {rollsRemovedCount.Sum()}"); // 43, 8890
 

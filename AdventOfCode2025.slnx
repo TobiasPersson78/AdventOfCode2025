@@ -7,4 +7,5 @@
   <Project Path="Day03/Day03.csproj" Id="66e6d90f-b099-44a7-a19d-a67b2401109d" />
   <Project Path="Day04/Day04.csproj" Id="dff1a969-5a1c-4773-a04d-cb1fa01bbcdc" />
   <Project Path="Day05/Day05.csproj" Id="e138847b-85b9-4a85-9db7-d140e4002e7f" />
+  <Project Path="Day06/Day06.csproj" Id="8370db59-a61c-40d2-b879-0459aae2dc96" />
 </Solution>

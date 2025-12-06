@@ -21,7 +21,6 @@ List<long> results = new[] { @"^(\d+)\1$", @"^(\d+)\1+$" }
 
 Console.WriteLine("Day 2A");
 Console.WriteLine($"Sum of invalid ids: {results[0]}"); // 1227775554, 29818212493
-
 Console.WriteLine("Day 2B");
 Console.WriteLine($"Sum of invalid ids: {results[1]}"); // 4174379265, 37432260594
 
