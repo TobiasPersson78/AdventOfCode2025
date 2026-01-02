@@ -28,14 +28,12 @@ string inputFilename = useExampleInput
                         .ToImmutableList());
         }
     );
-List<SolutionType> solutionTypes = regions
-    .Select(GetSolutionType)
-    .ToList();
+List<SolutionType> solutionTypes = [..regions.Select(GetSolutionType)];
 int triviallySolvableCount = solutionTypes.Count(solutionType => solutionType == SolutionType.TriviallySolvable);
-bool hasIndeterminateSolutions = solutionTypes.Any(solutionType => solutionType == SolutionType.Indeterminate);
+bool hasUnknownSolutions = solutionTypes.Any(solutionType => solutionType == SolutionType.Unknown);
 
 Console.WriteLine("Day 12A");
-Console.WriteLine($"Regions that can fit all of the presents: {(hasIndeterminateSolutions ? "Unknown" : triviallySolvableCount)} "); // 2 (but will print "Unknown"), 517
+Console.WriteLine($"Regions that can fit all of the presents: {(hasUnknownSolutions ? "Unknown" : triviallySolvableCount)} "); // 2 (but will print "Unknown"), 517
 
 SolutionType GetSolutionType(Region region) =>
     region switch
@@ -44,7 +42,7 @@ SolutionType GetSolutionType(Region region) =>
         _ when region.Width * region.Height
             < region.Quantities.Index().Sum(tuple => tuple.Item * presents[tuple.Index].SpaceCount)
             => SolutionType.Unsolvable,
-        _ => SolutionType.Indeterminate
+        _ => SolutionType.Unknown
     };
 
 readonly record struct Present(string[] Shape)
@@ -58,5 +56,5 @@ enum SolutionType
 {
     TriviallySolvable,
     Unsolvable,
-    Indeterminate
+    Unknown
 }

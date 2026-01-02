@@ -4,17 +4,15 @@
     ? ("exampleInput.txt", 10)
     : ("input.txt", 1_000);
 
-List<Position3d> positions = File
+List<Position3d> positions = [..File
     .ReadAllLines(inputFilename)
     .Select(line => line.Split(','))
-    .Select(array => new Position3d(long.Parse(array[0]), long.Parse(array[1]), long.Parse(array[2])))
-    .ToList();
+    .Select(array => new Position3d(long.Parse(array[0]), long.Parse(array[1]), long.Parse(array[2])))];
 List<PositionsDistance> distancesBetweenPositions =
-    (from i in Enumerable.Range(0, positions.Count - 1)
-     from j in Enumerable.Range(i + 1, positions.Count - (i + 1))
-     select new PositionsDistance(positions[i], positions[j], SquaredDistance(positions[i], positions[j])))
-    .OrderBy(distance => distance.SquaredDistance)
-    .ToList();
+    [..(from i in Enumerable.Range(0, positions.Count - 1)
+        from j in Enumerable.Range(i + 1, positions.Count - (i + 1))
+        select new PositionsDistance(positions[i], positions[j], SquaredDistance(positions[i], positions[j])))
+        .OrderBy(distance => distance.SquaredDistance)];
 Dictionary<Position3d, HashSet<Position3d>> circuitsForPositions = positions
     .ToDictionary(position => position, position => new HashSet<Position3d>([position]));
 foreach (PositionsDistance positionsDistance in distancesBetweenPositions.Take(maxConnections))
@@ -46,9 +44,9 @@ long SquaredDistance(Position3d a, Position3d b) =>
     (a.Y - b.Y) * (a.Y - b.Y) +
     (a.Z - b.Z) * (a.Z - b.Z);
 
-HashSet<Position3d> JoinNotConnectedCircuits(PositionsDistance positionsDistance1, Dictionary<Position3d, HashSet<Position3d>> dictionary)
+HashSet<Position3d> JoinNotConnectedCircuits(PositionsDistance positionsDistance, Dictionary<Position3d, HashSet<Position3d>> dictionary)
 {
-    (Position3d a, Position3d b, _) = positionsDistance1;
+    (Position3d a, Position3d b, _) = positionsDistance;
     HashSet<Position3d> circuitA = dictionary[a];
     if (!circuitA.Contains(b))
     {

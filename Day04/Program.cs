@@ -4,9 +4,7 @@ string inputFilename = useExampleInput
     ? "exampleInput.txt"
     : "input.txt";
 
-List<string> grid = File
-    .ReadAllLines(inputFilename)
-    .ToList();
+List<string> grid = [.. File.ReadAllLines(inputFilename)];
 Dictionary<Position, int> neighborRollsForPosition =
     (from row in Enumerable.Range(0, grid.Count)
      from column in Enumerable.Range(0, grid[0].Length)
@@ -19,10 +17,9 @@ Dictionary<Position, int> neighborRollsForPosition =
 List<int> rollsRemovedCount = new();
 do
 {
-    List<Position> positionsToRemove = neighborRollsForPosition
+    List<Position> positionsToRemove = [..neighborRollsForPosition
         .Where(item => item.Value < 4)
-        .Select(item => item.Key)
-        .ToList();
+        .Select(item => item.Key)];
     rollsRemovedCount.Add(positionsToRemove.Count);
 
     foreach (Position position in positionsToRemove)

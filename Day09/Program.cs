@@ -1,27 +1,24 @@
-﻿bool useExampleInput = true;
+﻿bool useExampleInput = false;
 
 string inputFilename = useExampleInput
     ? "exampleInput.txt"
     : "input.txt";
 
-List<Point> points = File
+List<Point> points = [..File
     .ReadAllLines(inputFilename)
     .Select(line => line.Split(','))
-    .Select(array => new Point(long.Parse(array[0]), long.Parse(array[1])))
-    .ToList();
+    .Select(array => new Point(long.Parse(array[0]), long.Parse(array[1])))];
 List<(Rectangle Rectangle, long Area)> rectanglesAndAreas =
-    (from i in Enumerable.Range(0, points.Count - 1)
-     from j in Enumerable.Range(i + 1, points.Count - (i + 1))
-     let rectangle = new Rectangle(
-         new Point(Math.Min(points[i].X, points[j].X), Math.Min(points[i].Y, points[j].Y)),
-         new Point(Math.Max(points[i].X, points[j].X), Math.Max(points[i].Y, points[j].Y)))
-     select (Rectangle: rectangle, Area: RectangleArea(rectangle)))
-    .OrderByDescending(rectangleAndArea => rectangleAndArea.Area)
-    .ToList();
+    [..(from i in Enumerable.Range(0, points.Count - 1)
+        from j in Enumerable.Range(i + 1, points.Count - (i + 1))
+        let rectangle = new Rectangle(
+            new Point(Math.Min(points[i].X, points[j].X), Math.Min(points[i].Y, points[j].Y)),
+            new Point(Math.Max(points[i].X, points[j].X), Math.Max(points[i].Y, points[j].Y)))
+        select (Rectangle: rectangle, Area: RectangleArea(rectangle)))
+        .OrderByDescending(rectangleAndArea => rectangleAndArea.Area)];
 long resultPartA = rectanglesAndAreas.First().Area;
-List<Line> perimeter = points
-    .Zip([..points[1..], points[0]], (a, b) => new Line(a, b))
-    .ToList();
+List<Line> perimeter = [..points
+    .Zip([..points[1..], points[0]], (a, b) => new Line(a, b))];
 long resultPartB = rectanglesAndAreas // Not a general solution, only works for this specific problem input
     .First(item => !perimeter.Any(line => RectangleCrossesLine(item.Rectangle, line)))
     .Area;

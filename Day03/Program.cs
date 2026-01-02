@@ -4,11 +4,10 @@ string inputFilename = useExampleInput
     ? "exampleInput.txt"
     : "input.txt";
 
-List<char[]> batteryBanks = File
+List<char[]> batteryBanks = [..File
     .ReadAllLines(inputFilename)
-    .Select(line => line.ToCharArray())
-    .ToList();
-List<long> results = new[] { 2, 12 }
+    .Select(line => line.ToCharArray())];
+List<long> results = [..new[] { 2, 12 }
     .Select(numberOfSwitchesPerBank =>
         batteryBanks
             .Sum(bank => Enumerable
@@ -23,8 +22,7 @@ List<long> results = new[] { 2, 12 }
                             .MaxBy(item => item.Value);
                         return (acc.PreviousIndex + 1 + index, acc.Total * 10 + remainingMax);
                     })
-                .Total))
-    .ToList();
+                .Total))];
 
 Console.WriteLine("Day 3A");
 Console.WriteLine($"Total output voltage: {results[0]}"); // 357, 17343
